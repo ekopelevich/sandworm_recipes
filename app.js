@@ -3,6 +3,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var _ = require('lodash');
 var app = express();
 
 var recipes = {
@@ -76,18 +77,26 @@ app.route('/recipes/:id')
     res.send(recipes[id]);
   });
   // .put(function(req, res){
-  //   req.recipe.id = req.body.id;
-  //   req.recipe.title = req.body.title;
-  //   req.recipe.author = req.body.author;
-  //   req.recipe.image = req.body.image;
-  //   req.recipe.ingredients = req.body.ingredients;
-  //   req.recipe.directions = req.body.directions;
-  //   req.recipe.prepTime = req.body.prepTime;
-  //   req.recipe.cookTime = req.body.cookTime;
-  //   res.json(req.recipe);
+  //   var update = req.body;
+  //   if (update.id) {
+  //     delete update.id;
+  //   }
+  //   var i = _.findIndex(recipes, {id: req.params.id});
+  //   if (!recipes[i]) {
+  //     res.send('The recipe you are looking for does not exist.');
+  //   } else {
+  //     var updatedRecipe = _.assign(recipe[i], update);
+  //     res.json(updatedRecipe);
+  //   }
   // })
-  // .delete( function(req, res) {
-  //   //delete recipe
+  // .delete(function(req, res) {
+  //   var i = _.findIndex(recipes, {id: req.params.id});
+  //   if (!recipes[i]) {
+  //     res.send('The recipe you are looking for does not exist.');
+  //   } else {
+  //     delete recipes[i];
+  //     res.json('The recipe has been deleted.');
+  //   }
   // });
 
 app.listen(process.env.PORT || 3000, function(){
